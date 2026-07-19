@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katriens Ponyclub — Herent</title>
+<meta name="description" content="Kleinschalige ponyclub in Herent. Je kind leert omgaan met een dier dat een eigen wil heeft. Individueel of met twee, vanaf 4 jaar.">
+
+<meta property="og:title" content="Katriens Ponyclub — Herent">
+<meta property="og:description" content="Waar een kind leert omgaan met een dier dat een eigen wil heeft. Individuele lessen vanaf 4 jaar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://katriensponyclub.be">
+<meta property="og:image" content="https://katriensponyclub.be/images/Popje_Cookie_Nasser_wei.JPEG">
+<meta property="og:locale" content="nl_BE">
+
+<link rel="icon" href="images/Katriens Pony Club Logo.PNG">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "Katriens Ponyclub",
+  "description": "Kleinschalige ponyclub waar kinderen leren omgaan met pony's. Individuele lessen of met twee, vanaf 4 jaar.",
+  "url": "https://katriensponyclub.be",
+  "email": "katriensponyclub@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Zijpstraat (naast nummer 125)",
+    "addressLocality": "Herent",
+    "postalCode": "3020",
+    "addressCountry": "BE"
+  },
+  "sameAs": [
+    "https://www.instagram.com/katriensponyclub/",
+    "https://www.facebook.com/profile.php?id=61585987446308"
+  ]
+}
+</script>
+
+<style>
+:root{
+  --moss:#2C3830;
+  --moss-deep:#1A1F1B;
+  --paper:#F7F4EE;
+  --paper-warm:#EFE9DD;
+  --rust:#B04A2F;
+  --meadow:#7E8F6B;
+  --ink:#1A1F1B;
+  --ink-soft:#4A5348;
+
+  --display:'Fraunces',Georgia,serif;
+  --body:'Karla',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+
+  --measure:34rem;
+  --gutter:clamp(1.25rem,5vw,4rem);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:clamp(1rem,.97rem + .18vw,1.1rem);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spacing:-.015em;margin:0}
+p{margin:0 0 1.1em}
+p:last-child{margin-bottom:0}
+a{color:inherit}
+
+.wrap{max-width:68rem;margin:0 auto;padding-inline:var(--gutter)}
+.narrow{max-width:var(--measure)}
+
+/* ---------- skip link ---------- */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--moss);color:var(--paper);padding:.7rem 1.1rem;
+  border-radius:0 0 4px 0;font-weight:700;
+}
+.skip:focus{left:0}
+
+:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,244,238,.94);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid rgba(44,56,48,.12);
+}
+.nav-inner{
+  display:flex;align-items:center;gap:1.5rem;
+  min-height:4rem;
+}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex-shrink:0}
+.nav-logo img{height:2.4rem;width:auto;display:block}
+.nav-logo span{
+  font-family:var(--display);font-weight:600;font-size:1.02rem;
+  letter-spacing:-.01em;white-space:nowrap;
+}
+.nav-links{
+  display:flex;gap:1.4rem;margin-left:auto;
+  font-size:.86rem;letter-spacing:.02em;
+}
+.nav-links a{
+  text-decoration:none;color:var(--ink-soft);
+  padding:.3rem 0;border-bottom:2px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+.nav-links a:hover{color:var(--rust);border-bottom-color:var(--rust)}
+@media (max-width:860px){
+  .nav-links{display:none}
+  .nav-inner{justify-content:center}
+  .nav-logo{margin-inline:auto}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  min-height:min(84vh,44rem);
+  display:flex;align-items:flex-end;
+  background:var(--moss-deep);
+  overflow:hidden;
+}
+.hero img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  opacity:.62;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,31,27,.92) 0%,rgba(26,31,27,.45) 42%,rgba(26,31,27,.2) 100%);
+}
+.hero-content{position:relative;z-index:2;width:100%;padding-block:3.5rem 4rem;color:var(--paper)}
+.hero h1{
+  font-size:clamp(2.4rem,1.3rem + 4.6vw,4.6rem);
+  max-width:16ch;margin-bottom:1.2rem;
+}
+.hero-lead{
+  font-size:clamp(1.05rem,.98rem + .5vw,1.3rem);
+  max-width:38ch;color:rgba(247,244,238,.9);margin-bottom:2rem;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;
+  font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(247,244,238,.72);margin-top:2rem;
+}
+
+.btn{
+  display:inline-block;
+  background:var(--rust);color:var(--paper);
+  text-decoration:none;font-weight:700;
+  padding:.9rem 1.7rem;border-radius:2px;
+  letter-spacing:.01em;
+  transition:background .18s,transform .18s;
+}
+.btn:hover{background:#973D25;transform:translateY(-1px)}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(3.5rem,2rem + 6vw,6.5rem)}
+.section-label{
+  font-family:var(--body);font-size:.78rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:1rem;
+}
+h2{font-size:clamp(1.7rem,1.3rem + 1.8vw,2.7rem);margin-bottom:1.5rem;max-width:20ch}
+h3{font-size:clamp(1.15rem,1.05rem + .5vw,1.4rem);margin-bottom:.5rem}
+
+.tinted{background:var(--paper-warm)}
+.dark{background:var(--moss);color:var(--paper)}
+.dark .section-label{color:#D9A38F}
+.dark h2,.dark h3{color:var(--paper)}
+
+.lede{
+  font-family:var(--display);
+  font-size:clamp(1.25rem,1.1rem + .8vw,1.7rem);
+  line-height:1.4;max-width:26ch;
+}
+
+.two-col{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,4vw,4.5rem);align-items:start;
+}
+@media (max-width:820px){.two-col{grid-template-columns:1fr}}
+
+figure{margin:0}
+figure img{width:100%;height:auto;display:block;border-radius:3px}
+figcaption{
+  font-size:.82rem;color:var(--ink-soft);
+  margin-top:.6rem;font-style:italic;
+}
+.dark figcaption{color:rgba(247,244,238,.65)}
+
+/* ---------- lesson types ---------- */
+.lessons{display:grid;gap:1.5rem;grid-template-columns:repeat(3,1fr);margin-top:2.5rem}
+@media (max-width:820px){.lessons{grid-template-columns:1fr}}
+.lesson{
+  background:var(--paper);
+  border-left:3px solid var(--rust);
+  padding:1.6rem 1.5rem;
+}
+.lesson .who{
+  font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--rust);font-weight:700;margin-bottom:.7rem;
+}
+.tinted .lesson{background:#fff}
+
+/* ---------- the horses: the signature ---------- */
+.herd-intro{max-width:36rem;margin-bottom:3rem}
+.herd-group + .herd-group{margin-top:3.5rem}
+.herd-group h3{
+  font-family:var(--body);font-size:.78rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:#D9A38F;
+  padding-bottom:.7rem;margin-bottom:1.8rem;
+  border-bottom:1px solid rgba(247,244,238,.18);
+}
+.herd{display:grid;gap:1.8rem;grid-template-columns:repeat(3,1fr)}
+@media (max-width:820px){.herd{grid-template-columns:1fr 1fr;gap:1.3rem}}
+@media (max-width:520px){.herd{grid-template-columns:1fr}}
+
+.horse figure{overflow:hidden;border-radius:3px;background:var(--moss-deep)}
+.horse img{
+  aspect-ratio:4/5;object-fit:cover;
+  transition:transform .5s ease;
+}
+.horse:hover img{transform:scale(1.04)}
+.horse-name{
+  font-family:var(--display);font-size:1.3rem;font-weight:600;
+  margin:.9rem 0 .15rem;
+}
+.horse-role{
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#D9A38F;margin-bottom:.5rem;
+}
+.horse p{font-size:.92rem;color:rgba(247,244,238,.82);line-height:1.55}
+
+/* ---------- practical ---------- */
+.facts{display:grid;gap:1.5rem 2.5rem;grid-template-columns:repeat(2,1fr);margin-top:2rem}
+@media (max-width:640px){.facts{grid-template-columns:1fr}}
+.fact dt{
+  font-size:.78rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--rust);margin-bottom:.35rem;
+}
+.fact dd{margin:0}
+
+.promise{
+  border-top:1px solid rgba(44,56,48,.18);
+  margin-top:2.5rem;padding-top:2rem;
+  display:grid;gap:1.5rem;grid-template-columns:1fr 1fr;
+}
+@media (max-width:640px){.promise{grid-template-columns:1fr}}
+
+/* ---------- prices ---------- */
+.price-row{
+  display:flex;flex-wrap:wrap;gap:2.5rem;
+  margin-block:1.8rem 1.5rem;
+}
+.price .amount{
+  font-family:var(--display);font-size:2.6rem;font-weight:600;
+  line-height:1;display:block;
+}
+.price .what{
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--rust);margin-top:.4rem;
+}
+
+/* ---------- honest ---------- */
+.honest ul{list-style:none;padding:0;margin:1.5rem 0 0;max-width:44rem}
+.honest li{
+  padding:.85rem 0 .85rem 1.8rem;position:relative;
+  border-bottom:1px solid rgba(44,56,48,.12);
+}
+.honest li::before{
+  content:'—';position:absolute;left:0;color:var(--rust);font-weight:700;
+}
+
+/* ---------- faq ---------- */
+.faq{max-width:44rem;margin-top:2rem}
+details{border-bottom:1px solid rgba(44,56,48,.14)}
+summary{
+  cursor:pointer;padding:1.1rem 2rem 1.1rem 0;position:relative;
+  font-weight:700;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:'+';position:absolute;right:.2rem;top:50%;
+  transform:translateY(-50%);
+  font-size:1.4rem;color:var(--rust);font-weight:400;line-height:1;
+}
+details[open] summary::after{content:'–'}
+details p{padding:0 0 1.2rem;color:var(--ink-soft)}
+
+/* ---------- signup ---------- */
+.signup-inner{max-width:44rem}
+.form-slot{margin-top:2rem}
+.form-slot iframe{width:100%;border:0;display:block;max-width:100%}
+.form-fallback{
+  font-size:.88rem;color:var(--ink-soft);
+  margin-top:1rem;padding-top:1rem;
+  border-top:1px solid rgba(44,56,48,.14);
+}
+.privacy-note{font-size:.86rem;color:var(--ink-soft);margin-top:1.2rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--moss-deep);color:rgba(247,244,238,.8);padding-block:3.5rem 2.5rem;font-size:.92rem}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media (max-width:640px){.foot-grid{grid-template-columns:1fr}}
+footer h3{font-size:1.15rem;color:var(--paper);margin-bottom:.6rem}
+footer a{color:rgba(247,244,238,.8)}
+footer a:hover{color:var(--paper)}
+.foot-social{display:flex;gap:1.2rem;margin-top:.8rem}
+.foot-legal{
+  margin-top:2.5rem;padding-top:1.5rem;
+  border-top:1px solid rgba(247,244,238,.15);
+  font-size:.82rem;color:rgba(247,244,238,.55);
+  display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
+}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Naar de inhoud</a>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#top">
+      <img src="images/Katriens Pony Club Logo.PNG" alt="">
+      <span>Katriens Ponyclub</span>
+    </a>
+    <div class="nav-links">
+      <a href="#de-club">De club</a>
+      <a href="#wat-we-doen">Wat we doen</a>
+      <a href="#de-dieren">De dieren</a>
+      <a href="#praktisch">Praktisch</a>
+      <a href="#tarieven">Tarieven</a>
+      <a href="#vragen">Vragen</a>
+      <a href="#aanmelden">Aanmelden</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <img src="images/Popje_Cookie_Nasser_wei.JPEG" alt="Drie pony's samen in de weide">
+  <div class="wrap hero-content">
+    <h1>Waar een kind leert omgaan met een dier dat een eigen wil heeft</h1>
+    <p class="hero-lead">Onze pony's zijn geen manegepony's. Ze lopen niet in cirkeltjes achter elkaar. Ze hebben een eigen karakter, en dat verandert alles aan hoe we lesgeven.</p>
+    <a class="btn" href="#aanmelden">Kom kennismaken</a>
+    <div class="hero-meta">
+      <span>Herent</span>
+      <span>Vanaf 4 jaar</span>
+      <span>Individueel of met twee</span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section id="de-club">
+  <div class="wrap">
+    <p class="section-label">De club</p>
+    <div class="two-col">
+      <div>
+        <h2>Rijden is een manier, geen doel</h2>
+        <p>Bij ons leert een kind een relatie opbouwen met een pony. Rijden is één van de manieren waarop dat gebeurt — een belangrijke, maar niet de enige en niet het doel op zich.</p>
+        <p>Dat klinkt misschien als een detail. Het is het hele verschil.</p>
+        <p>Omdat onze pony's een eigen wil hebben, kan een kind niet sturen op routine. Het moet leren communiceren: kijken naar het dier, aanvoelen wat er speelt, geduld hebben. Daarom geven we les aan één kind tegelijk, of aan twee. Niet omdat dat luxueuzer klinkt, maar omdat het niet anders kan met dieren die geen nummers zijn.</p>
+        <p>We zijn een sportclub, maar we zijn niet competitiegericht. Een les is beleving, geen prestatie.</p>
+      </div>
+      <figure class="reveal">
+        <img src="images/Popje_Coockie_posing.JPEG" alt="Popje en Cookie samen" loading="lazy">
+        <figcaption>Popje met haar dochter Cookie</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap two-col">
+    <figure class="reveal">
+      <img src="images/Popje_Joy_Katrien_groepsknuffel.JPEG" alt="Katrien tussen Popje en Joy" loading="lazy">
+    </figure>
+    <div>
+      <p class="section-label">Wie er lesgeeft</p>
+      <h2>Katrien</h2>
+      <p>Katrien staat als kinderverzorgster in het onderwijs. Die achtergrond bepaalt hoe ze met kinderen omgaat: ze voelen zich op hun gemak, ze voelen zich gehoord, en ze merken dat iemand er is om hén te laten groeien — niet om een programma af te werken.</p>
+      <p>Daarnaast is ze gediplomeerd <strong>Initiator Paardrijden</strong> van de Vlaamse Trainersschool.</p>
+      <p>Die combinatie is zeldzaam. Pedagogisch geschoold én formeel bevoegd om paardrijles te geven, met jonge kinderen.</p>
+    </div>
+  </div>
+</section>
+
+<section id="wat-we-doen">
+  <div class="wrap">
+    <p class="section-label">Wat we doen</p>
+    <h2>Een les duurt een uur</h2>
+    <div class="two-col">
+      <div>
+        <p>En dat uur ziet er zo uit: je kind komt binnen en wordt welkom geheten. Even praten — hoe gaat het vandaag? Samen de pony van de weide halen. Kijken waar je kind vandaag staat: wat wil het, wat kan het aan. Poetsen, opzadelen, werken, afzadelen, verzorgen.</p>
+        <p>Het verzorgen hoort er volwaardig bij. Het is geen opruimen achteraf, het is waar de band met het dier ontstaat.</p>
+        <p>Heeft je kind een baaldag en geen zin in spannende dingen? Dan worden het spelletjes met de pony, of een wandeling. We werken op het tempo van het kind, niet op dat van een lesplan.</p>
+      </div>
+      <figure class="reveal">
+        <img src="images/Katrien_popje_knuffel.JPEG" alt="Katrien bij Popje" loading="lazy">
+        <figcaption>Verzorgen hoort er volwaardig bij</figcaption>
+      </figure>
+    </div>
+
+    <div class="lessons">
+      <article class="lesson">
+        <h3>Gewenning</h3>
+        <p class="who">Gegeven door Hans</p>
+        <p>Je kind leert hoe je veilig met de dieren omgaat: hoe een pony in elkaar zit, hoe hij reageert, waar je op let. Het ervaart het dier aan de hand of erop, en groeit op eigen tempo. Dit is waar de meeste kinderen beginnen.</p>
+      </article>
+      <article class="lesson">
+        <h3>Rijles voor beginners</h3>
+        <p class="who">Gegeven door Katrien</p>
+        <p>Voor een kind dat heeft laten zien dat het écht wil leren rijden. Katrien neemt het onder haar vleugels en leert stap voor stap de kennis en techniek aan die rijden mogelijk maken.</p>
+      </article>
+      <article class="lesson">
+        <h3>Rijles voor gevorderden</h3>
+        <p class="who">Gegeven door Katrien</p>
+        <p>Dressuurmatig met de pony leren werken en groeien als combinatie — tot een niveau waarop competitie een optie zou kúnnen worden. Maar dat blijft een mogelijkheid, geen doel.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="tinted">
+  <div class="wrap">
+    <p class="section-label">Vakantiekampjes</p>
+    <div class="two-col">
+      <div>
+        <h2>Voor veel kinderen het startpunt</h2>
+        <p>Het natuurlijke pad is: kampje → gewenning → rijles. Inhoudelijk is een kampje een uitgebreide gewenning: alle aspecten van het omgaan met een pony, gecombineerd met samen spelen en beleven.</p>
+        <p>Bij warm weer gaat er extra aandacht naar veiligheid en gezondheid — voor de kinderen én voor de dieren. Er is een zwembad om af te koelen, en de pony's krijgen douches.</p>
+      </div>
+      <div>
+        <figure class="reveal" style="margin-bottom:1.8rem">
+          <img src="images/Katrien_watermeloen_eten.jpeg" alt="Watermeloen eten tijdens een kampje" loading="lazy">
+          <figcaption>Bij warm weer hoort watermeloen</figcaption>
+        </figure>
+        <dl class="facts">
+          <div class="fact"><dt>Wanneer</dt><dd>Paasvakantie en zomervakantie</dd></div>
+          <div class="fact"><dt>Uren</dt><dd>Maandag tot vrijdag, 9.00 tot 14.30 uur</dd></div>
+          <div class="fact"><dt>Brengen en halen</dt><dd>Afzetten vanaf een half uur eerder, ophalen tot een half uur later</dd></div>
+          <div class="fact"><dt>Leeftijd</dt><dd>4 tot 10 jaar</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="de-dieren">
+  <div class="wrap">
+    <p class="section-label">De dieren</p>
+    <div class="herd-intro">
+      <h2>Vijf dieren op stal. Drie geven les.</h2>
+      <p>Dat is een verschil met een manege, waar elk dier een lesdier is. Bij ons woont een kudde. Je kind gaat op les bij drie van hen — en leert de andere kennen omdat ze er nu eenmaal zijn.</p>
+    </div>
+
+    <div class="herd-group">
+      <h3>Bij wie je op les gaat</h3>
+      <div class="herd">
+        <article class="horse reveal">
+          <figure><img src="images/Nasser_vlechtjes.jpeg" alt="Nasser met vlechtjes in zijn manen" loading="lazy"></figure>
+          <p class="horse-name">Nasser</p>
+          <p class="horse-role">C-pony · 23 jaar</p>
+          <p>Wit, klein en oud genoeg om alles al gezien te hebben. Nasser liep vroeger in de sport en doet het nu rustiger aan: wandelen en stappen met de allerkleinsten.</p>
+        </article>
+        <article class="horse reveal">
+          <figure><img src="images/Joy_stal_liggen.jpeg" alt="Joy ligt in de stal" loading="lazy"></figure>
+          <p class="horse-name">Joy</p>
+          <p class="horse-role">D-pony</p>
+          <p>De pony van de gewenning en de eerste lesjes. Bij Joy leert een kind wat het is om naast een dier te staan dat groter is dan jij.</p>
+        </article>
+        <article class="horse reveal">
+          <figure><img src="images/Bibi_alone_wei.JPEG" alt="Bibi in de weide" loading="lazy"></figure>
+          <p class="horse-name">Bibi</p>
+          <p class="horse-role">E-pony</p>
+          <p>Groter, en daarmee de pony waar kinderen naartoe groeien. Bibi werkt met beginners én met gevorderden.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="herd-group">
+      <h3>En wie er verder bij hoort</h3>
+      <div class="herd">
+        <article class="horse reveal">
+          <figure><img src="images/Popje_alone.JPEG" alt="Popje in de weide" loading="lazy"></figure>
+          <p class="horse-name">Popje</p>
+          <p class="horse-role">Kweekmerrie · moeder van Cookie</p>
+          <p>Popje loopt geen lessen. Ze is de moeder van Cookie, en daarmee de reden dat er hier een jong paard rondloopt.</p>
+        </article>
+        <article class="horse reveal">
+          <figure><img src="images/Coockie_alone.JPEG" alt="Cookie, jaarling" loading="lazy"></figure>
+          <p class="horse-name">Cookie</p>
+          <p class="horse-role">Jaarling · geboren 2025</p>
+          <p>Nog te jong voor werk. Kinderen die hier komen zien haar opgroeien — dat is iets wat je in een manege niet meemaakt.</p>
+        </article>
+        <article class="horse reveal">
+          <figure><img src="images/Katrien_Vigor_pose.jpeg" alt="Katrien met Vigor" loading="lazy"></figure>
+          <p class="horse-name">Vigor</p>
+          <p class="horse-role">5 jaar · Katriens sportpaard</p>
+          <p>Vigor is Katriens eigen paard en loopt in de sport. Hij staat niet bij ons op stal maar bij haar lesgever in Boortmeerbeek — Katrien blijft zelf ook leerling.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="praktisch">
+  <div class="wrap">
+    <p class="section-label">Praktisch</p>
+    <h2>Hoe het werkt</h2>
+    <dl class="facts">
+      <div class="fact"><dt>Waar</dt><dd>Zijpstraat (naast nummer 125), 3020 Herent</dd></div>
+      <div class="fact"><dt>Rijlessen</dt><dd>Maandag, woensdag, vrijdag, zaterdag en zondag</dd></div>
+      <div class="fact"><dt>Gewenning</dt><dd>Dinsdag en donderdag</dd></div>
+      <div class="fact"><dt>Uren</dt><dd>Spreken we samen af</dd></div>
+      <div class="fact"><dt>Helm</dt><dd>Voor een proefles en gewenning volstaat een fietshelm. Voor rijlessen een echte paardrijhelm.</dd></div>
+      <div class="fact"><dt>Kleding</dt><dd>Laarsjes of rijlaarzen, en een nauwsluitende lange broek. Geen losse kleding.</dd></div>
+    </dl>
+
+    <div class="two-col" style="margin-top:2.5rem">
+      <div>
+        <p>We werken <strong>uitsluitend op afspraak</strong>. Alles wordt vooraf gepland en afgerekend — ad hoc langskomen kan niet. Dat is geen onwil: met individuele lessen en dieren die van de weide moeten komen, kan het gewoon niet anders.</p>
+        <p>We werken met <strong>vaste afspraken</strong>, wekelijks of tweewekelijks. Zo weet je kind waar het aan toe is, en de pony ook. Een proefles is mogelijk om eerst eens te komen proeven.</p>
+        <p>Er komen geen dieren van buitenaf op onze terreinen.</p>
+      </div>
+      <div>
+        <div class="promise" style="margin-top:0;border-top:0;padding-top:0">
+          <div>
+            <h3>Geen les, geen kosten</h3>
+            <p>Kon een les niet doorgaan? Dan wordt hij niet aangerekend. Om welke reden ook.</p>
+          </div>
+          <div>
+            <h3>Een geannuleerde les gaat niet verloren</h3>
+            <p>Het bedrag blijft als tegoed staan en wordt gebruikt voor een volgende les.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tinted" id="tarieven">
+  <div class="wrap narrow">
+    <p class="section-label">Tarieven</p>
+    <h2>Richtprijzen</h2>
+    <div class="price-row">
+      <div class="price"><span class="amount">vanaf €25</span><span class="what">Gewenning</span></div>
+      <div class="price"><span class="amount">vanaf €30</span><span class="what">Rijles</span></div>
+    </div>
+    <p>We werken bewust met richtprijzen en niet met een vaste tarievenlijst. Wat een les kost hangt af van de formule en de situatie.</p>
+    <p>Zit er een financiële drempel? Zeg het gerust. Daar valt over te praten.</p>
+  </div>
+</section>
+
+<section class="honest">
+  <div class="wrap">
+    <p class="section-label">Eerlijk gezegd</p>
+    <h2>Waar we eerlijk over zijn</h2>
+    <p class="narrow">Om te vermijden dat je hier tijd in steekt en dan merkt dat het niet past:</p>
+    <ul>
+      <li>Wil je kind competitiegericht rijden? Dan zijn wij niet de juiste club.</li>
+      <li>Zoek je een plek waar je onaangekondigd kunt binnenvallen? Bij ons werkt alles op afspraak.</li>
+      <li>Zoek je vooral opvang voor een uurtje? Dan zijn er betere opties.</li>
+      <li>Heb je een eigen paard dat je wil meebrengen? Dat kan bij ons niet.</li>
+    </ul>
+    <p style="margin-top:1.8rem">Klinkt de rest wel als wat je zoekt? Dan komen we graag met je kennismaken.</p>
+  </div>
+</section>
+
+<section class="tinted" id="vragen">
+  <div class="wrap">
+    <p class="section-label">Vragen</p>
+    <h2>Wat ouders ons vragen</h2>
+    <div class="faq">
+      <details>
+        <summary>Vanaf welke leeftijd kan mijn kind meedoen?</summary>
+        <p>Vanaf 4 jaar. Is je kind jonger en lijkt het je toch klaar? Neem gerust contact op — soms kan het, maar dan bekijken we het per kind. Onze kerndoelgroep zijn kinderen; volwassenen kunnen bij ons terecht maar zijn niet waar we ons op richten.</p>
+      </details>
+      <details>
+        <summary>Wat als mijn kind nog nooit bij een pony is geweest?</summary>
+        <p>Dan begin je bij gewenning of een vakantiekampje. Ongeveer drie kwart van onze deelnemers is beginner. Je kind hoeft niets te kunnen.</p>
+      </details>
+      <details>
+        <summary>Hoeveel kinderen zitten er in een les?</summary>
+        <p>Eén of twee. Nooit meer.</p>
+      </details>
+      <details>
+        <summary>Welke helm heeft mijn kind nodig?</summary>
+        <p>Voor een proefles en voor gewenning volstaat de fietshelm die je waarschijnlijk al in huis hebt. Je hoeft dus niets aan te kopen om eens te komen proeven. Pas wanneer je kind aan echte rijlessen begint, is een paardrijhelm nodig.</p>
+      </details>
+      <details>
+        <summary>Moet ik meteen vastleggen?</summary>
+        <p>Nee. Je kunt eerst een proefles doen. Daarna werken we met vaste wekelijkse of tweewekelijkse afspraken, die vooraf worden afgerekend.</p>
+      </details>
+      <details>
+        <summary>Wat als mijn kind ziek is of we op reis zijn?</summary>
+        <p>Dan wordt de les niet aangerekend, en een al betaalde les blijft als tegoed staan.</p>
+      </details>
+      <details>
+        <summary>Hoeveel deelnemers zijn er?</summary>
+        <p>Ongeveer veertig. Grofweg de helft in wekelijkse lessen, de helft via de vakantiekampjes.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="aanmelden">
+  <div class="wrap signup-inner">
+    <p class="section-label">Aanmelden</p>
+    <h2>Zin om te komen kennismaken?</h2>
+    <p>Vul het formulier in en we nemen contact met je op om een proefles in te plannen.</p>
+
+    <div class="form-slot">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform?embedded=true"
+        width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0"
+        title="Aanmeldformulier Katriens Ponyclub"
+        loading="lazy">Formulier laden…</iframe>
+      <p class="form-fallback">Werkt het formulier niet?
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform" rel="noopener">Open het in een nieuw venster</a>
+        of mail ons op <a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a>.</p>
+    </div>
+
+    <p class="privacy-note">Je gegevens komen terecht bij de club en worden gebruikt om contact met je op te nemen. Meer daarover in onze <a href="privacy.html">privacyverklaring</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Katriens Ponyclub</h3>
+        <p>Zijpstraat (naast nummer 125)<br>3020 Herent</p>
+        <p><a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Volg ons</h3>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/katriensponyclub/" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61585987446308" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>Katriens Ponyclub is een feitelijke vereniging.</span>
+      <a href="privacy.html">Privacyverklaring</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
