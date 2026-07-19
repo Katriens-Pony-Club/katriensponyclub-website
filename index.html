@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Katriens Ponyclub — Herent</title>
-<meta name="description" content="Kleinschalige ponyclub in Herent. Je kind leert omgaan met een dier dat een eigen wil heeft. Individueel of met twee, vanaf 3 jaar.">
+<meta name="description" content="Kleinschalige ponyclub in Herent. Je kind leert omgaan met een dier dat een eigen wil heeft. Individueel of met twee, vanaf 4 jaar.">
 
 <meta property="og:title" content="Katriens Ponyclub — Herent">
-<meta property="og:description" content="Waar een kind leert omgaan met een dier dat een eigen wil heeft. Individuele lessen vanaf 3 jaar.">
+<meta property="og:description" content="Waar een kind leert omgaan met een dier dat een eigen wil heeft. Individuele lessen vanaf 4 jaar.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://katriensponyclub.be">
 <meta property="og:image" content="https://katriensponyclub.be/images/Popje_Cookie_Nasser_wei.JPEG">
@@ -24,7 +24,7 @@
   "@context": "https://schema.org",
   "@type": "SportsActivityLocation",
   "name": "Katriens Ponyclub",
-  "description": "Kleinschalige ponyclub waar kinderen leren omgaan met pony's. Individuele lessen of met twee, vanaf 3 jaar.",
+  "description": "Kleinschalige ponyclub waar kinderen leren omgaan met pony's. Individuele lessen of met twee, vanaf 4 jaar.",
   "url": "https://katriensponyclub.be",
   "email": "katriensponyclub@gmail.com",
   "address": {
@@ -302,12 +302,13 @@ details p{padding:0 0 1.2rem;color:var(--ink-soft)}
 
 /* ---------- signup ---------- */
 .signup-inner{max-width:44rem}
-.form-slot{
-  margin-top:2rem;background:var(--paper);
-  border:1px dashed rgba(44,56,48,.3);
-  padding:2.5rem 1.5rem;text-align:center;border-radius:3px;
+.form-slot{margin-top:2rem}
+.form-slot iframe{width:100%;border:0;display:block;max-width:100%}
+.form-fallback{
+  font-size:.88rem;color:var(--ink-soft);
+  margin-top:1rem;padding-top:1rem;
+  border-top:1px solid rgba(44,56,48,.14);
 }
-.form-slot iframe{width:100%;border:0;display:block}
 .privacy-note{font-size:.86rem;color:var(--ink-soft);margin-top:1.2rem}
 
 /* ---------- footer ---------- */
@@ -361,7 +362,7 @@ footer a:hover{color:var(--paper)}
     <a class="btn" href="#aanmelden">Kom kennismaken</a>
     <div class="hero-meta">
       <span>Herent</span>
-      <span>Vanaf 3 jaar</span>
+      <span>Vanaf 4 jaar</span>
       <span>Individueel of met twee</span>
     </div>
   </div>
@@ -398,7 +399,7 @@ footer a:hover{color:var(--paper)}
       <h2>Katrien</h2>
       <p>Katrien staat als kinderverzorgster in het onderwijs. Die achtergrond bepaalt hoe ze met kinderen omgaat: ze voelen zich op hun gemak, ze voelen zich gehoord, en ze merken dat iemand er is om hén te laten groeien — niet om een programma af te werken.</p>
       <p>Daarnaast is ze gediplomeerd <strong>Initiator Paardrijden</strong> van de Vlaamse Trainersschool.</p>
-      <p>Die combinatie is zeldzaam. Pedagogisch geschoold én formeel bevoegd om paardrijles te geven, met kinderen vanaf drie jaar.</p>
+      <p>Die combinatie is zeldzaam. Pedagogisch geschoold én formeel bevoegd om paardrijles te geven, met jonge kinderen.</p>
     </div>
   </div>
 </section>
@@ -589,7 +590,7 @@ footer a:hover{color:var(--paper)}
     <div class="faq">
       <details>
         <summary>Vanaf welke leeftijd kan mijn kind meedoen?</summary>
-        <p>Vanaf 3 à 4 jaar. Onze kerndoelgroep zijn kinderen. Volwassenen kunnen bij ons terecht, maar zijn niet waar we ons op richten.</p>
+        <p>Vanaf 4 jaar. Is je kind jonger en lijkt het je toch klaar? Neem gerust contact op — soms kan het, maar dan bekijken we het per kind. Onze kerndoelgroep zijn kinderen; volwassenen kunnen bij ons terecht maar zijn niet waar we ons op richten.</p>
       </details>
       <details>
         <summary>Wat als mijn kind nog nooit bij een pony is geweest?</summary>
@@ -626,10 +627,14 @@ footer a:hover{color:var(--paper)}
     <p>Vul het formulier in en we nemen contact met je op om een proefles in te plannen.</p>
 
     <div class="form-slot">
-      <!-- Vervang dit blok door de embed-code van je Google Form:
-           Google Forms → Verzenden → < > → Insluiten → kopieer de <iframe> hier -->
-      <p><strong>Hier komt het aanmeldformulier.</strong><br>
-      Plak de embed-code van het Google Form op deze plek in <code>index.html</code>.</p>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform?embedded=true"
+        width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0"
+        title="Aanmeldformulier Katriens Ponyclub"
+        loading="lazy">Formulier laden…</iframe>
+      <p class="form-fallback">Werkt het formulier niet?
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform" rel="noopener">Open het in een nieuw venster</a>
+        of mail ons op <a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a>.</p>
     </div>
 
     <p class="privacy-note">Je gegevens komen terecht bij de club en worden gebruikt om contact met je op te nemen. Meer daarover in onze <a href="privacy.html">privacyverklaring</a>.</p>
