@@ -12,6 +12,13 @@ const MAX_KORT = 200;   // naam, e-mail, telefoon
 const MAX_LANG = 2000;  // kinderen, ervaring, bericht
 const MIN_INVULTIJD_MS = 2000;
 
+// Ondergrens voor een bruikbare tijdstempel. Number(null), Number('') en
+// Number(false) zijn alle drie 0 — eindig, en dus "geldig" voor een naïeve
+// controle, maar het betekent 1 januari 1970. Zonder deze grens zou zo'n
+// inzending gelden als ruim vijftig jaar geleden ingevuld, en dus als een
+// doodgewone trage inzending zonder notitie. Precies wat je niet wil.
+const VROEGSTE_T = Date.UTC(2020, 0, 1);
+
 const INTERESSES = ['Gewenning', 'Rijles', 'Kampje', 'Anders'];
 
 // Notitie op een inzending die verdacht snel binnenkwam. Sinds de tweede ronde
@@ -87,9 +94,15 @@ module.exports = async function handler(req, res) {
 
   // 2. Tijdcontrole: alleen signaleren, niet weggooien. Een ouder met een
   //    wachtwoordmanager die alles ineens invult, is echt en mag niet verdwijnen.
+  //    Let op: verstreken mag nul of negatief zijn. De klok van de bezoeker
+  //    loopt niet gelijk met die van de server in Frankfurt, dus een t die van
+  //    hier uit in de toekomst ligt is een gewoon verschijnsel, geen aanval.
+  //    Zo'n inzending telt als snel, en krijgt dus gewoon een notitie.
   const geladenOp = Number(data.t);
+  const bruikbareTijd = Number.isFinite(geladenOp) && geladenOp >= VROEGSTE_T;
+
   let notitie = '';
-  if (!Number.isFinite(geladenOp)) {
+  if (!bruikbareTijd) {
     notitie = NOTITIE_GEEN_TIJD;
   } else if (Date.now() - geladenOp < MIN_INVULTIJD_MS) {
     notitie = NOTITIE_SNEL;
