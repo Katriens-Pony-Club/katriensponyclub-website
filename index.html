@@ -10,7 +10,7 @@
 <meta property="og:description" content="Waar een kind leert omgaan met een dier dat een eigen wil heeft. Individuele lessen vanaf 4 jaar.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://katriensponyclub.be">
-<meta property="og:image" content="https://katriensponyclub.be/images/Popje_Cookie_Nasser_wei.JPEG">
+<meta property="og:image" content="https://katriensponyclub.be/images/Popje_Coockie_Nasser_wei.JPEG">
 <meta property="og:locale" content="nl_BE">
 
 <link rel="icon" href="images/Katriens Pony Club Logo.PNG">
@@ -307,7 +307,60 @@ details p{padding:0 0 1.2rem;color:var(--ink-soft)}
 /* ---------- signup ---------- */
 .signup-inner{max-width:44rem}
 .form-slot{margin-top:2rem}
-.form-slot iframe{width:100%;border:0;display:block;max-width:100%}
+
+/* eigen aanmeldformulier */
+.form-row{margin-bottom:1.4rem}
+.form-row label{
+  display:block;font-weight:700;font-size:.94rem;
+  margin-bottom:.4rem;color:var(--ink);
+}
+.form-row .hint{
+  display:block;font-weight:400;font-size:.84rem;
+  color:var(--ink-soft);margin-top:.15rem;
+}
+.form-row input[type=text],
+.form-row input[type=email],
+.form-row input[type=tel],
+.form-row select,
+.form-row textarea{
+  width:100%;font:inherit;font-size:1rem;color:var(--ink);
+  background:var(--paper);
+  border:1px solid rgba(44,56,48,.28);border-radius:2px;
+  padding:.75rem .85rem;
+  transition:border-color .18s,box-shadow .18s;
+  -webkit-appearance:none;appearance:none;
+}
+.form-row select{
+  background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%234A5348' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .9rem center;background-size:.7rem;
+  padding-right:2.4rem;
+}
+.form-row textarea{min-height:6.5rem;resize:vertical}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{
+  outline:none;border-color:var(--rust);
+  box-shadow:0 0 0 3px rgba(176,74,47,.16);
+}
+.form-row input:invalid:not(:placeholder-shown){border-color:var(--rust)}
+
+/* honeypot: weg voor mensen, zichtbaar voor bots */
+.form-hp{
+  position:absolute;left:-9999px;width:1px;height:1px;
+  overflow:hidden;opacity:0;pointer-events:none;
+}
+
+.form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.8rem}
+button.btn{border:0;cursor:pointer;font-family:var(--body);font-size:1rem}
+button.btn[disabled]{opacity:.6;cursor:progress;transform:none}
+.form-status{font-size:.92rem;margin:0}
+.form-status.is-fout{color:var(--rust);font-weight:500}
+.form-melding{
+  margin-top:1.6rem;padding:1.2rem 1.3rem;
+  background:var(--paper-warm);border-left:3px solid var(--meadow);
+  border-radius:2px;
+}
+.form-melding p{margin:0}
+.form-melding h3{margin-bottom:.3rem}
+
 .form-fallback{
   font-size:.88rem;color:var(--ink-soft);
   margin-top:1rem;padding-top:1rem;
@@ -362,7 +415,7 @@ footer a:hover{color:var(--paper)}
 </nav>
 
 <header class="hero" id="top">
-  <img src="images/Popje_Cookie_Nasser_wei.JPEG" alt="Drie pony's samen in de weide">
+  <img src="images/Popje_Coockie_Nasser_wei.JPEG" alt="Drie pony's samen in de weide">
   <div class="wrap hero-content">
     <h1>Waar een kind leert omgaan met een dier dat een eigen wil heeft</h1>
     <p class="hero-lead">Onze pony's zijn geen manegepony's. Ze lopen niet in cirkeltjes achter elkaar. Ze hebben een eigen karakter, en dat verandert alles aan hoe we lesgeven.</p>
@@ -389,7 +442,7 @@ footer a:hover{color:var(--paper)}
         <p>We zijn een sportclub, maar we zijn niet competitiegericht. Een les is beleving, geen prestatie.</p>
       </div>
       <figure class="reveal">
-        <img src="images/Popje_Coockie_posing.JPEG" alt="Popje en Cookie samen" loading="lazy">
+        <img src="images/Popje_Coockie_posing.JPEG" alt="Popje en Coockie samen" loading="lazy">
         <figcaption>Popje met haar dochter Coockie</figcaption>
       </figure>
     </div>
@@ -637,14 +690,71 @@ footer a:hover{color:var(--paper)}
     <p>Vul het formulier in en we nemen contact met je op om een proefles in te plannen.</p>
 
     <div class="form-slot">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform?embedded=true"
-        width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0"
-        title="Aanmeldformulier Katriens Pony Club"
-        loading="lazy">Formulier laden…</iframe>
+      <form id="aanmeldformulier" novalidate>
+        <input type="hidden" name="formulier" value="aanmelding">
+
+        <div class="form-row">
+          <label for="f-naam">Je naam</label>
+          <input type="text" id="f-naam" name="naam_ouder" required
+                 autocomplete="name" maxlength="200" placeholder=" ">
+        </div>
+
+        <div class="form-row">
+          <label for="f-email">E-mailadres</label>
+          <input type="email" id="f-email" name="email" required
+                 autocomplete="email" maxlength="200" placeholder=" ">
+        </div>
+
+        <div class="form-row">
+          <label for="f-telefoon">Telefoon <span class="hint">Mag je leeg laten. Handig als we snel iets willen afspreken.</span></label>
+          <input type="tel" id="f-telefoon" name="telefoon"
+                 autocomplete="tel" maxlength="200" placeholder=" ">
+        </div>
+
+        <div class="form-row">
+          <label for="f-kinderen">Je kind of kinderen <span class="hint">Naam en leeftijd. Meerdere kinderen mag je gewoon onder elkaar zetten.</span></label>
+          <textarea id="f-kinderen" name="kinderen" required maxlength="2000"
+                    placeholder=" "></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="f-interesse">Waar gaat je voorkeur naar uit?</label>
+          <select id="f-interesse" name="interesse">
+            <option value="Gewenning">Gewenning — eerst leren omgaan met de pony</option>
+            <option value="Rijles">Rijles</option>
+            <option value="Anders">Anders / weet ik nog niet</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-ervaring">Heeft je kind al ervaring? <span class="hint">Mag je leeg laten. De meeste kinderen beginnen bij nul, dat is prima.</span></label>
+          <textarea id="f-ervaring" name="ervaring" maxlength="2000" placeholder=" "></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="f-bericht">Iets wat we moeten weten? <span class="hint">Mag je leeg laten.</span></label>
+          <textarea id="f-bericht" name="bericht" maxlength="2000" placeholder=" "></textarea>
+        </div>
+
+        <div class="form-hp" aria-hidden="true">
+          <label for="f-website">Laat dit veld leeg</label>
+          <input type="text" id="f-website" name="website"
+                 tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn" id="f-verstuur">Verstuur</button>
+          <p class="form-status" id="f-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="form-melding" id="f-bedankt" hidden>
+        <h3>Bedankt!</h3>
+        <p id="f-bedankt-tekst">We nemen zo snel mogelijk contact met je op om een proefles in te plannen.</p>
+      </div>
+
       <p class="form-fallback">Werkt het formulier niet?
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdn5wXQt1UjV5jgG6ZU5TgDYkLAdBFh6IV29EZqq_APqaSKuw/viewform" rel="noopener">Open het in een nieuw venster</a>
-        of mail ons op <a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a>.</p>
+        Mail ons gerust op <a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a>.</p>
     </div>
 
     <p class="privacy-note">Je gegevens komen terecht bij de club en worden gebruikt om contact met je op te nemen. Meer daarover in onze <a href="privacy.html">privacyverklaring</a>.</p>
@@ -685,6 +795,81 @@ footer a:hover{color:var(--paper)}
     });
   },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+
+/* aanmeldformulier */
+(function(){
+  var form = document.getElementById('aanmeldformulier');
+  if(!form) return;
+
+  var knop    = document.getElementById('f-verstuur');
+  var status  = document.getElementById('f-status');
+  var bedankt = document.getElementById('f-bedankt');
+  var geladenOp = Date.now();
+
+  function toon(tekst, isFout){
+    status.textContent = tekst;
+    status.classList.toggle('is-fout', !!isFout);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    toon('');
+
+    var velden = new FormData(form);
+    var data = { t: geladenOp };
+    velden.forEach(function(waarde, naam){ data[naam] = waarde; });
+
+    // Eigen controle: de browsermelding is Engels en springt niet mee in de huisstijl.
+    if(!data.naam_ouder || !data.naam_ouder.trim()){
+      toon('Vul nog even je naam in.', true);
+      document.getElementById('f-naam').focus();
+      return;
+    }
+    if(!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email.trim())){
+      toon('Vul nog even een geldig e-mailadres in.', true);
+      document.getElementById('f-email').focus();
+      return;
+    }
+    if(!data.kinderen || !data.kinderen.trim()){
+      toon('Vul nog even de naam en leeftijd van je kind in.', true);
+      document.getElementById('f-kinderen').focus();
+      return;
+    }
+
+    knop.disabled = true;
+    knop.textContent = 'Bezig met versturen…';
+
+    fetch('/api/formulier', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    })
+    .then(function(r){
+      return r.json().catch(function(){ return {}; })
+        .then(function(body){ return {ok: r.ok, body: body}; });
+    })
+    .then(function(res){
+      if(res.ok && res.body.ok){
+        // De ingevulde gegevens blijven staan tot het echt gelukt is.
+        form.hidden = true;
+        if(res.body.bericht){
+          document.getElementById('f-bedankt-tekst').textContent = res.body.bericht;
+        }
+        bedankt.hidden = false;
+        bedankt.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
+      toon(res.body.fout || 'Er ging iets mis bij het versturen. Mail ons gerust op katriensponyclub@gmail.com.', true);
+      knop.disabled = false;
+      knop.textContent = 'Verstuur';
+    })
+    .catch(function(){
+      toon('We konden je aanmelding niet versturen. Kijk je verbinding na, of mail ons op katriensponyclub@gmail.com.', true);
+      knop.disabled = false;
+      knop.textContent = 'Verstuur';
+    });
+  });
 })();
 </script>
 
