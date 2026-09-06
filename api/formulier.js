@@ -14,7 +14,23 @@ const MIN_INVULTIJD_MS = 2000;
 
 const INTERESSES = ['Gewenning', 'Rijles', 'Kampje', 'Anders'];
 
+// Notitie op een inzending die verdacht snel binnenkwam. Sinds de tweede ronde
+// gooien we die NIET meer weg: een verloren echte aanmelding is duurder dan een
+// botrij die Hans wegklikt. De meting blijft, maar als signaal, niet als oordeel.
+const NOTITIE_SNEL = '[systeem] Snel ingevuld: minder dan 2 seconden na het laden van de pagina. Mogelijk automatisch ingediend.';
+const NOTITIE_GEEN_TIJD = '[systeem] Geen invultijd meegestuurd. Mogelijk automatisch ingediend.';
+
 // --- kleine hulpjes ---------------------------------------------------------
+
+// HET antwoord bij succes. Eén bron, want de honeypot-tak geeft exact hetzelfde
+// terug: zou dat ook maar één teken verschillen, dan kan een aanvaller met twee
+// inzendingen uitvissen welk veld de val is en die voortaan leeg laten.
+// Nieuwe functie, geen losse string: zo kan een tekstwijziging de takken niet
+// uit elkaar laten lopen.
+function succesAntwoord() {
+  // Geen "Bedankt!" in de tekst: de kop boven deze zin zegt dat al.
+  return { ok: true, bericht: 'We nemen zo snel mogelijk contact met je op om een proefles in te plannen.' };
+}
 
 function tekst(waarde, max) {
   if (typeof waarde !== 'string') return '';
@@ -59,15 +75,24 @@ module.exports = async function handler(req, res) {
     return stuur(res, 400, { ok: false, fout: 'Onleesbare aanvraag.' });
   }
 
-  // 1. Honeypot. Stil slikken: een bot mag niet merken dat hij tegengehouden is.
-  if (tekst(data.website, MAX_KORT) !== '') {
-    return stuur(res, 200, { ok: true, bericht: 'Bedankt voor je bericht.' });
-  }
+  // 1. Honeypot: alleen vaststellen, nog niet handelen. Dit veld vult een mens
+  //    nooit in, dus een treffer is zeker genoeg om weg te gooien — maar dat
+  //    gebeurt pas na de veldcontrole hieronder. Zou de val meteen een 200
+  //    geven, dan kan een aanvaller met twee inzendingen (één keer met, één
+  //    keer zonder een verdacht veld, allebei met een ongeldig e-mailadres) de
+  //    val alsnog aanwijzen: 200 tegenover 400 verklapt hem. Door pas na de
+  //    validatie te beslissen, is elk antwoord identiek aan dat van een gewone
+  //    bezoeker die exact hetzelfde invulde.
+  const isBot = tekst(data.website, MAX_KORT) !== '';
 
-  // 2. Tijdcontrole. Idem stil.
+  // 2. Tijdcontrole: alleen signaleren, niet weggooien. Een ouder met een
+  //    wachtwoordmanager die alles ineens invult, is echt en mag niet verdwijnen.
   const geladenOp = Number(data.t);
-  if (!Number.isFinite(geladenOp) || Date.now() - geladenOp < MIN_INVULTIJD_MS) {
-    return stuur(res, 200, { ok: true, bericht: 'Bedankt voor je bericht.' });
+  let notitie = '';
+  if (!Number.isFinite(geladenOp)) {
+    notitie = NOTITIE_GEEN_TIJD;
+  } else if (Date.now() - geladenOp < MIN_INVULTIJD_MS) {
+    notitie = NOTITIE_SNEL;
   }
 
   // 3. Velden opschonen en begrenzen.
@@ -94,6 +119,12 @@ module.exports = async function handler(req, res) {
       ok: false,
       fout: `Vul nog even ${ontbreekt.join(' en ')} in.`,
     });
+  }
+
+  // De velden zijn in orde. Nu pas de val dichtklappen: stil weggooien, met
+  // exact het antwoord dat een echte bezoeker hier zou krijgen.
+  if (isBot) {
+    return stuur(res, 200, succesAntwoord());
   }
 
   const token = process.env.NOTION_TOKEN;
@@ -127,6 +158,12 @@ module.exports = async function handler(req, res) {
     properties['Interesse'] = { select: { name: interesse } };
   }
 
+  // Opmerkingen vullen we alleen als er iets te melden is, zodat het veld verder
+  // van Hans blijft. De notitie komt bovenaan als er ooit toch al iets stond.
+  if (notitie) {
+    properties['Opmerkingen'] = richText(notitie);
+  }
+
   // 6. Wegschrijven.
   try {
     const antwoord = await fetch('https://api.notion.com/v1/pages', {
@@ -156,8 +193,5 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  return stuur(res, 200, {
-    ok: true,
-    bericht: 'Bedankt! We nemen zo snel mogelijk contact met je op.',
-  });
+  return stuur(res, 200, succesAntwoord());
 };
