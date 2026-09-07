@@ -14,6 +14,15 @@
 // Waarom alles POST is, ook het opvragen: een token in een query string komt
 // in de serverlogs, in de Referer-header en in de browsergeschiedenis terecht.
 // De pagina houdt de token in de fragment (#) en stuurt hem in de body.
+//
+// Waarom de roepnaam van de Uitnodiging komt en niet van de Participant: dan
+// zou deze integratie leesrecht op 🧒 Participant nodig hebben, en daar staan
+// de gezondheidsnotities van alle kinderen. Een token die op een publieke
+// website leeft, hoort daar niet bij te kunnen. Nu raakt hij alleen aan
+// 📨 Uitnodiging en 📝 Toestemmingsinzending. Het veld Roepnaam kind wordt
+// bij het aanmaken van de link ingevuld. Om dezelfde reden schrijft dit
+// endpoint de Participant-relatie niet op de inzending: de identiteit hangt
+// aan de Uitnodiging, en de relatie wordt bij de verwerking gelegd (PB-015).
 
 const NOTION_VERSION = '2026-03-11';
 const UITNODIGING_DATA_SOURCE_ID = '5026bbed-34a4-445a-9e1e-ab34ea82b7c1';
@@ -139,20 +148,16 @@ async function zoekUitnodiging(token) {
     return { fout: { status: 410, bericht: 'Deze link is vervallen. Vraag ons gerust om een nieuwe.' } };
   }
 
-  const participantId = props['Participant']?.relation?.[0]?.id;
-  if (!participantId) {
-    console.error('Uitnodiging zonder Participant:', rij.id);
+  const roepnaam = (props['Roepnaam kind']?.rich_text?.[0]?.plain_text || '').trim();
+  if (!roepnaam) {
+    // Een uitnodiging zonder roepnaam is een fout bij het aanmaken van de
+    // link, niet bij de ouder. Die mag dus geen "link onbekend" te zien
+    // krijgen, want dan gaat ze zoeken naar iets dat ze goed deed.
+    console.error('Uitnodiging zonder Roepnaam kind:', rij.id);
     return { fout: { status: 500, bericht: FOUT_ALGEMEEN } };
   }
 
-  return { uitnodiging: { id: rij.id, participantId, status, geopendOp: props['Geopend op']?.date?.start } };
-}
-
-async function haalKind(participantId) {
-  const pagina = await notion(`/pages/${participantId}`);
-  const roepnaam = pagina.properties['Roepnaam']?.title?.[0]?.plain_text || '';
-  const achternaam = pagina.properties['Achternaam']?.rich_text?.[0]?.plain_text || '';
-  return { roepnaam, achternaam };
+  return { uitnodiging: { id: rij.id, roepnaam, status, geopendOp: props['Geopend op']?.date?.start } };
 }
 
 // --- handler ----------------------------------------------------------------
@@ -186,16 +191,14 @@ module.exports = async function handler(req, res) {
     if (gevonden.fout) {
       return stuur(res, gevonden.fout.status, { ok: false, fout: gevonden.fout.bericht });
     }
-    const { id: uitnodigingId, participantId, status, geopendOp } = gevonden.uitnodiging;
+    const { id: uitnodigingId, roepnaam, status, geopendOp } = gevonden.uitnodiging;
 
     // --- opvragen ---------------------------------------------------------
     if (data.actie === 'opvragen') {
-      const kind = await haalKind(participantId);
-
       // Alleen de roepnaam gaat naar buiten. Geen achternaam, geen huishouden,
       // geen broers of zussen, en zeker geen gezondheidsgegevens. Wie de token
       // heeft, mag weten over welk kind het gaat, meer niet.
-      const antwoord = { ok: true, kind: kind.roepnaam };
+      const antwoord = { ok: true, kind: roepnaam };
 
       // Geopend op is een eerste-keer-veld. Een tweede bezoek overschrijft het
       // niet, anders verlies je wanneer de ouder de link echt geopend heeft.
@@ -253,13 +256,10 @@ module.exports = async function handler(req, res) {
     }
     if ((eerdere.results || []).length) notities.push(NOTITIE_HERINZENDING);
 
-    const kind = await haalKind(participantId);
     const datum = vandaag();
-    const volledigeNaam = `${kind.roepnaam} ${kind.achternaam}`.trim();
 
     const properties = {
-      'Naam': { title: [{ text: { content: `${datum} · ${volledigeNaam}` } }] },
-      'Participant': { relation: [{ id: participantId }] },
+      'Naam': { title: [{ text: { content: `${datum} · ${roepnaam}` } }] },
       'Uitnodiging': { relation: [{ id: uitnodigingId }] },
       'Ontvangen op': { date: { start: datum } },
       'Status': { select: { name: 'Nieuw' } },
