@@ -1,0 +1,23 @@
+# Regeleinden vastleggen.
+#
+# Zonder dit bestand hangt het van de instellingen van de machine af of een
+# bestand als CRLF of als LF in de repo belandt. Op 07/09/2026 stonden alle
+# tien de bestanden als gewijzigd terwijl er inhoudelijk niets veranderd was:
+# evenveel toegevoegde als verwijderde regels, in elk bestand. Een commit op
+# dat moment had de hele repo herschreven en de echte wijziging onzichtbaar
+# gemaakt in de review.
+#
+# text=auto laat git zelf uitmaken wat tekst is. eol=lf legt vast dat tekst
+# als LF in de repo staat, ongeacht wat er op de schijf van de bewerker staat.
+* text=auto eol=lf
+
+# Beeldmateriaal is binair en mag nooit omgezet worden.
+*.png binary
+*.PNG binary
+*.jpg binary
+*.jpeg binary
+*.JPEG binary
+*.JPG binary
+*.ico binary
+*.webp binary
+*.pdf binary
