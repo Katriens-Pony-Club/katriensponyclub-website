@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toestemmingen — Katriens Pony Club</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="images/Katriens Pony Club Logo.PNG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --moss:#2C3830; --moss-deep:#1A1F1B; --paper:#F7F4EE; --paper-warm:#EFE9DD;
+  --rust:#B04A2F; --meadow:#7E8F6B; --ink:#1A1F1B; --ink-soft:#4A5348;
+  --display:'Fraunces',Georgia,serif;
+  --body:'Karla',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --gutter:clamp(1.25rem,5vw,3rem);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:clamp(1rem,.97rem + .18vw,1.1rem);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:var(--display);font-weight:600;line-height:1.15;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(1.7rem,1.3rem + 1.6vw,2.4rem)}
+h2{font-size:1.2rem;margin:2.4rem 0 .3rem}
+p{margin:0 0 1.1em}
+a{color:var(--rust)}
+.wrap{max-width:40rem;margin:0 auto;padding:clamp(2rem,6vw,4rem) var(--gutter) 5rem}
+.lood{color:var(--ink-soft)}
+fieldset{border:0;padding:0;margin:0 0 1.6rem}
+legend{padding:0;font-weight:500}
+.hint{font-size:.92rem;color:var(--ink-soft);margin:.15rem 0 .6rem}
+.opties{display:flex;flex-wrap:wrap;gap:.5rem}
+.optie{position:relative}
+.optie input{position:absolute;opacity:0;width:0;height:0}
+.optie span{display:inline-block;padding:.45rem 1rem;border:1px solid #CFC7B8;border-radius:999px;
+  background:#fff;cursor:pointer;font-size:.95rem;transition:background .15s,border-color .15s,color .15s}
+.optie input:checked + span{background:var(--moss);border-color:var(--moss);color:var(--paper)}
+.optie input:focus-visible + span{outline:2px solid var(--rust);outline-offset:2px}
+label.veld{display:block;margin-bottom:1.1rem}
+label.veld > span{display:block;font-weight:500;margin-bottom:.3rem}
+input[type=text],textarea{width:100%;font:inherit;padding:.6rem .75rem;border:1px solid #CFC7B8;
+  border-radius:.4rem;background:#fff;color:inherit}
+textarea{min-height:4.5rem;resize:vertical}
+input[type=text]:focus,textarea:focus{outline:2px solid var(--rust);outline-offset:1px;border-color:var(--moss)}
+.vink{display:flex;gap:.7rem;align-items:flex-start;margin-bottom:1.2rem}
+.vink input{margin-top:.35rem;width:1.1rem;height:1.1rem;flex:none;accent-color:var(--moss)}
+button{font:inherit;font-weight:700;background:var(--rust);color:#fff;border:0;border-radius:999px;
+  padding:.85rem 2rem;cursor:pointer}
+button[disabled]{opacity:.55;cursor:default}
+.kader{background:var(--paper-warm);border-radius:.6rem;padding:1.1rem 1.3rem;margin:0 0 1.6rem}
+.fout{background:#F6E4DF;border-left:3px solid var(--rust);padding:.9rem 1.1rem;border-radius:.3rem;margin:1rem 0}
+.verborgen{display:none}
+hr{border:0;border-top:1px solid #DCD4C6;margin:2.4rem 0}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<div id="laden"><p class="lood">Even geduld, we halen de gegevens op.</p></div>
+
+<div id="probleem" class="verborgen">
+  <h1>Er klopt iets niet met deze link</h1>
+  <div class="fout" id="probleem-tekst"></div>
+  <p>Mail ons gerust op <a href="mailto:katriensponyclub@gmail.com">katriensponyclub@gmail.com</a>, dan sturen we een nieuwe.</p>
+</div>
+
+<div id="klaar" class="verborgen">
+  <h1>Bedankt</h1>
+  <p id="klaar-tekst"></p>
+</div>
+
+<form id="formulier" class="verborgen" novalidate>
+  <h1>Toestemmingen voor <span id="kindnaam"></span></h1>
+  <p class="lood">Eén keer per jaar vragen we dit opnieuw. Je kan dit formulier heringeven zolang je link geldig is.</p>
+
+  <h2>Beeldmateriaal</h2>
+  <p class="hint">Tijdens de lessen en de kampjes worden soms foto's genomen. Hieronder bepaal je zelf waar die van jouw kind mogen verschijnen. Je mag overal nee antwoorden, dat verandert niets aan de deelname.</p>
+
+  <fieldset data-veld="ouder">
+    <legend>Rechtstreeks naar jou als ouder</legend>
+    <p class="hint">Een foto die we je persoonlijk doorsturen.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <fieldset data-veld="whatsapp">
+    <legend>In de WhatsApp-groep van de kampjes</legend>
+    <p class="hint">Zichtbaar voor de andere ouders van dat kampje.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <fieldset data-veld="sociaal">
+    <legend>Op Facebook en Instagram</legend>
+    <p class="hint">Openbaar zichtbaar.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <fieldset data-veld="website">
+    <legend>Op de website van de club</legend>
+    <p class="hint">Openbaar zichtbaar.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <fieldset data-veld="drukwerk">
+    <legend>In drukwerk</legend>
+    <p class="hint">Een affiche of een foldertje.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <fieldset data-veld="herkenbaarheid">
+    <legend>Mag je kind herkenbaar in beeld?</legend>
+    <p class="hint">Kies je voor niet-herkenbaar, dan gebruiken we alleen beelden waarop het gezicht niet te zien is.</p>
+    <div class="opties"></div>
+  </fieldset>
+
+  <label class="veld"><span>Wil je hier iets bij verduidelijken?</span>
+    <textarea name="toelichting" maxlength="2000" placeholder="Bijvoorbeeld: enkel foto's te paard, of enkel met helm."></textarea>
+  </label>
+
+  <hr>
+
+  <h2>Gezondheid</h2>
+  <p class="hint">Dit gaat over veiligheid tijdens de les. Katrien moet weten of er iets is waar ze rekening mee moet houden. Gezondheidsgegevens zijn gevoelig, dus we bewaren ze alleen wanneer je dat hier uitdrukkelijk toestaat. Vink je niets aan, dan wordt er niets van dit blok bewaard.</p>
+
+  <div class="vink">
+    <input type="checkbox" id="gezondheid" name="gezondheid_toestemming">
+    <label for="gezondheid">Ja, ik geef toestemming om de gegevens hieronder te bewaren en te gebruiken tijdens de lessen en de kampjes.</label>
+  </div>
+
+  <div id="gezondheidsblok" class="verborgen">
+    <div class="kader">
+      <label class="veld"><span>Allergieën</span>
+        <textarea name="allergie" maxlength="2000" placeholder="Laat leeg als er geen zijn."></textarea>
+      </label>
+      <label class="veld"><span>Medicatie</span>
+        <textarea name="medicatie" maxlength="2000" placeholder="Wat, wanneer, en waar het zit."></textarea>
+      </label>
+      <label class="veld"><span>Zon en warmte</span>
+        <textarea name="zon" maxlength="2000" placeholder="Bijvoorbeeld: smeert zelf niet, of verdraagt slecht warmte."></textarea>
+      </label>
+      <label class="veld"><span>Overige aandachtspunten</span>
+        <textarea name="overig" maxlength="2000"></textarea>
+      </label>
+    </div>
+  </div>
+
+  <hr>
+
+  <label class="veld"><span>Je eigen naam</span>
+    <input type="text" name="naam_ouder" maxlength="200" autocomplete="name" required>
+  </label>
+
+  <div class="vink">
+    <input type="checkbox" id="privacy" name="privacy" required>
+    <label for="privacy">Ik heb de <a href="privacy.html" target="_blank" rel="noopener">privacyverklaring</a> gelezen.</label>
+  </div>
+
+  <div id="formfout" class="fout verborgen"></div>
+  <button type="submit" id="verstuur">Versturen</button>
+</form>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var GELADEN_OP = Date.now();
+
+  // De token staat achter het hekje. Alles na een # verlaat de browser nooit,
+  // dus hij komt niet in de serverlogs en niet in een Referer-header terecht.
+  var token = (location.hash || '').replace(/^#/, '').trim();
+
+  var el = function(id){ return document.getElementById(id); };
+  var toon = function(id){ el(id).classList.remove('verborgen'); };
+  var verberg = function(id){ el(id).classList.add('verborgen'); };
+
+  function probleem(bericht){
+    verberg('laden'); verberg('formulier');
+    el('probleem-tekst').textContent = bericht;
+    toon('probleem');
+  }
+
+  function radios(veld, waarden){
+    var doos = document.querySelector('fieldset[data-veld="' + veld + '"] .opties');
+    waarden.forEach(function(waarde){
+      var l = document.createElement('label');
+      l.className = 'optie';
+      var i = document.createElement('input');
+      i.type = 'radio'; i.name = veld; i.value = waarde;
+      var s = document.createElement('span');
+      s.textContent = waarde;
+      l.appendChild(i); l.appendChild(s);
+      doos.appendChild(l);
+    });
+  }
+
+  ['ouder','whatsapp','sociaal','website','drukwerk'].forEach(function(v){
+    radios(v, ['Ja','Nee']);
+  });
+  radios('herkenbaarheid', ['Ja','Nee','Alleen niet-herkenbaar']);
+
+  el('gezondheid').addEventListener('change', function(){
+    el('gezondheidsblok').classList.toggle('verborgen', !this.checked);
+  });
+
+  function post(body){
+    return fetch('/api/toestemming', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function(r){
+      return r.json().catch(function(){ return { ok:false, fout:'Onleesbaar antwoord van de server.' }; });
+    });
+  }
+
+  if (!token) {
+    probleem('De link is niet volledig. Kopieer hem in zijn geheel uit de mail, tot en met het stuk achter het hekje.');
+    return;
+  }
+
+  post({ actie: 'opvragen', token: token }).then(function(antwoord){
+    if (!antwoord.ok) { probleem(antwoord.fout || 'Onbekende fout.'); return; }
+    el('kindnaam').textContent = antwoord.kind;
+    document.title = 'Toestemmingen voor ' + antwoord.kind + ' — Katriens Pony Club';
+    verberg('laden');
+    toon('formulier');
+  }).catch(function(){
+    probleem('We konden de gegevens niet ophalen. Probeer het straks nog eens.');
+  });
+
+  function waardeVan(naam){
+    var gekozen = document.querySelector('input[name="' + naam + '"]:checked');
+    return gekozen ? gekozen.value : '';
+  }
+  function tekstVan(naam){
+    var v = document.querySelector('[name="' + naam + '"]');
+    return v ? v.value : '';
+  }
+
+  el('formulier').addEventListener('submit', function(e){
+    e.preventDefault();
+    var knop = el('verstuur');
+    var fout = el('formfout');
+    fout.classList.add('verborgen');
+
+    if (!tekstVan('naam_ouder').trim()) {
+      fout.textContent = 'Vul nog even je eigen naam in.';
+      fout.classList.remove('verborgen'); return;
+    }
+    if (!el('privacy').checked) {
+      fout.textContent = 'Bevestig nog even dat je de privacyverklaring gelezen hebt.';
+      fout.classList.remove('verborgen'); return;
+    }
+
+    knop.disabled = true;
+    knop.textContent = 'Bezig…';
+
+    post({
+      actie: 'indienen',
+      token: token,
+      t: GELADEN_OP,
+      naam_ouder: tekstVan('naam_ouder'),
+      ouder: waardeVan('ouder'),
+      whatsapp: waardeVan('whatsapp'),
+      sociaal: waardeVan('sociaal'),
+      website: waardeVan('website'),
+      drukwerk: waardeVan('drukwerk'),
+      herkenbaarheid: waardeVan('herkenbaarheid'),
+      toelichting: tekstVan('toelichting'),
+      gezondheid_toestemming: el('gezondheid').checked,
+      allergie: tekstVan('allergie'),
+      medicatie: tekstVan('medicatie'),
+      zon: tekstVan('zon'),
+      overig: tekstVan('overig')
+    }).then(function(antwoord){
+      if (!antwoord.ok) {
+        fout.textContent = antwoord.fout || 'Onbekende fout.';
+        fout.classList.remove('verborgen');
+        knop.disabled = false; knop.textContent = 'Versturen';
+        return;
+      }
+      el('klaar-tekst').textContent = antwoord.bericht;
+      verberg('formulier');
+      toon('klaar');
+      window.scrollTo(0, 0);
+    }).catch(function(){
+      fout.textContent = 'Versturen lukte niet. Probeer het straks nog eens.';
+      fout.classList.remove('verborgen');
+      knop.disabled = false; knop.textContent = 'Versturen';
+    });
+  });
+})();
+</script>
+</body>
+</html>
