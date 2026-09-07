@@ -222,7 +222,12 @@ module.exports = async function handler(req, res) {
       // niet, anders verlies je wanneer de ouder de link echt geopend heeft.
       if (!geopendOp) {
         const wijziging = { 'Geopend op': { date: { start: vandaag() } } };
-        if (status === 'Verzonden') wijziging['Status'] = { select: { name: 'Geopend' } };
+        // Aangemaakt hoort er ook bij. Een uitnodiging bestaat namelijk al
+        // voor ze verstuurd is, en wie de link dan toch opent heeft hem
+        // langs een andere weg gekregen. Dat willen we juist zien staan.
+        if (status === 'Verzonden' || status === 'Aangemaakt') {
+          wijziging['Status'] = { select: { name: 'Geopend' } };
+        }
         await notion(`/pages/${uitnodigingId}`, {
           method: 'PATCH',
           body: JSON.stringify({ properties: wijziging }),
