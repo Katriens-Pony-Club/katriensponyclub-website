@@ -157,7 +157,11 @@ async function zoekUitnodiging(token) {
     return { fout: { status: 500, bericht: FOUT_ALGEMEEN } };
   }
 
-  return { uitnodiging: { id: rij.id, roepnaam, status, geopendOp: props['Geopend op']?.date?.start } };
+  // Leeg telt als Ouder. Zo blijft een uitnodiging die vóór dit veld bestond
+  // gewoon werken, en is de veilige stand ook de stand bij vergeten invullen.
+  const aanspreekvorm = props['Aanspreekvorm']?.select?.name === 'Deelnemer zelf' ? 'Deelnemer zelf' : 'Ouder';
+
+  return { uitnodiging: { id: rij.id, roepnaam, aanspreekvorm, status, geopendOp: props['Geopend op']?.date?.start } };
 }
 
 // --- handler ----------------------------------------------------------------
@@ -205,14 +209,14 @@ module.exports = async function handler(req, res) {
     if (gevonden.fout) {
       return stuur(res, gevonden.fout.status, { ok: false, fout: gevonden.fout.bericht });
     }
-    const { id: uitnodigingId, roepnaam, status, geopendOp } = gevonden.uitnodiging;
+    const { id: uitnodigingId, roepnaam, aanspreekvorm, status, geopendOp } = gevonden.uitnodiging;
 
     // --- opvragen ---------------------------------------------------------
     if (data.actie === 'opvragen') {
       // Alleen de roepnaam gaat naar buiten. Geen achternaam, geen huishouden,
       // geen broers of zussen, en zeker geen gezondheidsgegevens. Wie de token
       // heeft, mag weten over welk kind het gaat, meer niet.
-      const antwoord = { ok: true, kind: roepnaam };
+      const antwoord = { ok: true, kind: roepnaam, aanspreekvorm };
 
       // Geopend op is een eerste-keer-veld. Een tweede bezoek overschrijft het
       // niet, anders verlies je wanneer de ouder de link echt geopend heeft.

@@ -76,10 +76,10 @@ hr{border:0;border-top:1px solid #DCD4C6;margin:2.4rem 0}
   <p class="lood">Eén keer per jaar vragen we dit opnieuw. Je kan dit formulier heringeven zolang je link geldig is.</p>
 
   <h2>Beeldmateriaal</h2>
-  <p class="hint">Tijdens de lessen en de kampjes worden soms foto's genomen. Hieronder bepaal je zelf waar die van jouw kind mogen verschijnen. Je mag overal nee antwoorden, dat verandert niets aan de deelname.</p>
+  <p class="hint" id="beeld-inleiding">Tijdens de lessen en de kampjes worden soms foto's genomen. Hieronder bepaal je zelf waar die van jouw kind mogen verschijnen. Je mag overal nee antwoorden, dat verandert niets aan de deelname.</p>
 
   <fieldset data-veld="ouder">
-    <legend>Rechtstreeks naar jou als ouder</legend>
+    <legend id="legend-ouder">Rechtstreeks naar jou als ouder</legend>
     <p class="hint">Een foto die we je persoonlijk doorsturen.</p>
     <div class="opties"></div>
   </fieldset>
@@ -109,7 +109,7 @@ hr{border:0;border-top:1px solid #DCD4C6;margin:2.4rem 0}
   </fieldset>
 
   <fieldset data-veld="herkenbaarheid">
-    <legend>Mag je kind herkenbaar in beeld?</legend>
+    <legend id="legend-herkenbaar">Mag je kind herkenbaar in beeld?</legend>
     <p class="hint">Kies je voor niet-herkenbaar, dan gebruiken we alleen beelden waarop het gezicht niet te zien is.</p>
     <div class="opties"></div>
   </fieldset>
@@ -219,9 +219,20 @@ hr{border:0;border-top:1px solid #DCD4C6;margin:2.4rem 0}
     return;
   }
 
+  // Niet elke deelnemer is een kind. Voor een volwassene die voor zichzelf
+  // antwoordt, leest een formulier dat overal "je kind" zegt als een fout.
+  // De uitnodiging bepaalt welke van de twee het is; leeg telt als ouder.
+  function spreekAanAlsDeelnemer(){
+    el('beeld-inleiding').textContent =
+      'Tijdens de lessen en de kampjes worden soms foto\'s genomen. Hieronder bepaal je zelf waar die van jou mogen verschijnen. Je mag overal nee antwoorden, dat verandert niets aan je deelname.';
+    el('legend-ouder').textContent = 'Rechtstreeks naar jou';
+    el('legend-herkenbaar').textContent = 'Mag je herkenbaar in beeld?';
+  }
+
   post({ actie: 'opvragen', token: token }).then(function(antwoord){
     if (!antwoord.ok) { probleem(antwoord.fout || 'Onbekende fout.'); return; }
     el('kindnaam').textContent = antwoord.kind;
+    if (antwoord.aanspreekvorm === 'Deelnemer zelf') spreekAanAlsDeelnemer();
     document.title = 'Toestemmingen voor ' + antwoord.kind + ' — Katriens Pony Club';
     verberg('laden');
     toon('formulier');
