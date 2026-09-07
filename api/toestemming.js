@@ -163,6 +163,20 @@ async function zoekUitnodiging(token) {
 // --- handler ----------------------------------------------------------------
 
 module.exports = async function handler(req, res) {
+  // Het tijdstip van binnenkomst, vastgelegd voor er ook maar iets gebeurt.
+  //
+  // Dit stond eerst verderop, na het opzoeken van de uitnodiging. Daardoor
+  // telde de duur van die Notion-oproep mee in de invultijd van de ouder. Op
+  // 07/09/2026 gemeten: een inzending die de browser op hetzelfde ogenblik
+  // verstuurde kreeg geen notitie, terwijl het klokverschil met de server
+  // maar 211 ms was. De Notion-oproep had er dus ruim anderhalve seconde
+  // over gedaan, en de inzending zag eruit als traag ingevuld.
+  //
+  // Dat verliest geen gegevens, maar het maakt het signaal onbetrouwbaar op
+  // precies de momenten dat de server traag is. Een botsignaal dat stilvalt
+  // wanneer het druk wordt, is geen signaal.
+  const ONTVANGEN_OP = Date.now();
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return stuur(res, 405, { ok: false, fout: 'Methode niet toegestaan.' });
@@ -231,7 +245,7 @@ module.exports = async function handler(req, res) {
     const bruikbareTijd = Number.isFinite(geladenOp) && geladenOp >= VROEGSTE_T;
     const notities = [];
     if (!bruikbareTijd) notities.push(NOTITIE_GEEN_TIJD);
-    else if (Date.now() - geladenOp < MIN_INVULTIJD_MS) notities.push(NOTITIE_SNEL);
+    else if (ONTVANGEN_OP - geladenOp < MIN_INVULTIJD_MS) notities.push(NOTITIE_SNEL);
 
     // Oudere onbewerkte inzendingen voor dezelfde link op Genegeerd zetten.
     // Ze blijven bestaan: het onbewerkte spoor is precies waarom deze
